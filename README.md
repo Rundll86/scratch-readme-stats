@@ -32,3 +32,8 @@
 
 - [ ] 添加主题切换
 - [ ] 支持小盒子社区
+- [ ] 备用线路部署
+
+## 灵感来源
+
+[anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)

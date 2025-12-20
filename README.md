@@ -23,6 +23,18 @@
 | username | 显示昵称(可自定义) |
 | color | 颜色(诸如`aaaaaa`) |
 
+## 社区支持情况
+
+| 社区 | 支持度 |
+| --- | --- |
+| 40code | 公开作品数/点赞数/观看数 |
+| ZeroCat | 公开作品数/Stars |
+| 小盒子社区 | - |
+| 别针社区 | - |
+| ccw.site | - |
+
+欢迎各位前来贡献
+
 ### 默认值
 - color: `2f80ed`
 - username: `Developer`

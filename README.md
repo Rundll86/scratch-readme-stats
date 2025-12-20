@@ -5,11 +5,11 @@
 
 在您的Markdown里嵌入如下代码
 ```md
-![](https://scratch-readme-state.yearnstudio.cn/?code=你的40codeID&username=你的昵称)
+![](http://scratch-readme-state.yearnstudio.cn/?code=你的40codeID&username=你的昵称)
 ```
 
 你会得到下图所示的卡片
-![](https://scratch-readme-state.yearnstudio.cn/?code=858&zc=125&username=阳毅)
+![](http://scratch-readme-state.yearnstudio.cn/?code=858&zc=125&username=阳毅)
 
 ---
 
@@ -30,9 +30,22 @@
 
 ## TODO
 
-- [ ] 添加主题切换
+- [-] 添加主题切换
 - [ ] 支持小盒子社区
-- [ ] 备用线路部署
+- [-] 备用线路部署
+
+## 线路
+
+### ESA边缘函数
+```
+http://scratch-readme-state.yearnstudio.cn
+```
+
+### EdgeOne边缘函数
+> 支持HTTP/HTTPS
+```
+https://screadme.yearnstudio.cn/
+```
 
 ## 灵感来源
 

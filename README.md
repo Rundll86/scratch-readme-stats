@@ -22,6 +22,7 @@
 | zc | ZeroCat社区账户ID |
 | username | 显示昵称(可自定义) |
 | color | 颜色(诸如`aaaaaa`) |
+| theme | 主题(dark/light) |
 
 ## 社区支持情况
 
@@ -38,6 +39,7 @@
 ### 默认值
 - color: `2f80ed`
 - username: `Developer`
+- theme: `dark`
 
 ---
 
@@ -53,7 +55,7 @@
 http://scratch-readme-state.yearnstudio.cn
 ```
 
-### EdgeOne边缘函数
+### EdgeOne边缘函数(荐)
 > 支持HTTP/HTTPS
 ```
 https://screadme.yearnstudio.cn/

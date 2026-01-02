@@ -30,7 +30,7 @@
 | --- | --- |
 | 40code | 公开作品数/点赞数/观看数 |
 | ZeroCat | 公开作品数/Stars |
-| 小盒子社区 | - |
+| 小盒子社区(Sbox) | Likes/Stars/views |
 | 别针社区 | - |
 | ccw.site | - |
 

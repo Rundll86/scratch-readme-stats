@@ -20,6 +20,7 @@
 | --- | --- |
 | code | 40code账户ID |
 | zc | ZeroCat社区账户ID |
+| sbox | Sbox社区(小盒子社区)账户ID |
 | username | 显示昵称(可自定义) |
 | color | 颜色(诸如`aaaaaa`) |
 | theme | 主题(dark/light) |
@@ -30,7 +31,7 @@
 | --- | --- |
 | 40code | 公开作品数/点赞数/观看数 |
 | ZeroCat | 公开作品数/Stars |
-| 小盒子社区(Sbox) | Likes/Stars/views |
+| 小盒子社区(Sbox) | Likes/Stars/views/pr |
 | 别针社区 | - |
 | ccw.site | - |
 
@@ -45,7 +46,7 @@
 
 ## TODO
 - [x] 添加主题切换
-- [ ] 支持小盒子社区
+- [x] 支持小盒子社区
 - [x] 备用线路部署
 
 ## 线路

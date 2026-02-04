@@ -33,7 +33,7 @@ export const zeroCat: CommunityAdapter = {
             throw new Error(`Status: ${response.status}`);
         }
         const data = await response.json();
-        const projects: { star_count: number }[] = data?.projects || [];
+        const projects: { star_count?: number }[] = data?.projects || [];
         const works = projects.length;
         const likes = projects.reduce((acc, cur) => acc + (cur.star_count || 0), 0);
         return { works, likes, looks: 0 };

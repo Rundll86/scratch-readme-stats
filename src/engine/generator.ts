@@ -74,7 +74,13 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
         const { theme } = setting;
         const promises: Promise<UserProfile>[] = []
         for (const result of results) {
-            promises.push(result.adapter.getInfo(result.user));
+            promises.push((async (adapter) => {
+                try {
+                    return await adapter.getInfo(result.user);
+                } catch (e) {
+                    throw new Error(`请求${adapter.communityId}时出错：${e}`);
+                }
+            })(result.adapter));
         }
         const profiles = await Promise.all(promises);
         const totalProfile = profiles.reduce((pre, cur) => ({

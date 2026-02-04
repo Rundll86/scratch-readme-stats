@@ -10,5 +10,7 @@ export default defineConfig({
     loader: {
         ".svg": "text"
     },
-    format: ["esm"]
+    format: ["esm"],
+    splitting: false,
+    bundle: true
 });

@@ -1,6 +1,6 @@
 name = "scratch-readme"
-description = "GenerateGenerate your card for your scratch REAMDE"
-entry = "src/index.js"
+description = "Generate your card for your scratch README"
+entry = "dist/esa.mjs"
 codeVersions = [ ]
 
 [dev]

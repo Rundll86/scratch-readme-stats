@@ -1,43 +1,46 @@
 # Scratch README Stats
+
 用于生成适用于Scratch社区的个人信息卡片
 
 ## 快速生成个人社区信息卡片
 
 在您的Markdown里嵌入如下代码
+
 ```md
-![](http://scratch-readme-state.yearnstudio.cn/?code=你的40codeID&username=你的昵称)
+![提示文字](http://scratch-readme-state.yearnstudio.cn/?code=你的40codeID&username=你的昵称)
 ```
 
 你会得到下图所示的卡片
 
-![](http://scratch-readme-state.yearnstudio.cn/?code=858&zc=125&username=阳毅)
+![阳毅 个人卡片](http://scratch-readme-state.yearnstudio.cn/?code=858&zc=125&username=阳毅)
 
 ---
 
 ## 各个参数
 
-| 参数 | 描述 |
-| --- | --- |
-| code | 40code账户ID |
-| zc | ZeroCat社区账户ID |
-| sbox | Sbox社区(小盒子社区)账户ID |
-| username | 显示昵称(可自定义) |
-| color | 颜色(诸如`aaaaaa`) |
-| theme | 主题(dark/light) |
+| 参数     | 描述                       |
+|----------|----------------------------|
+| code     | 40code账户ID               |
+| zc       | ZeroCat社区账户ID          |
+| sbox     | Sbox社区(小盒子社区)账户ID |
+| username | 显示昵称(可自定义)         |
+| color    | 颜色(诸如`aaaaaa`)         |
+| theme    | 主题(dark/light)           |
 
 ## 社区支持情况
 
-| 社区 | 支持度 |
-| --- | --- |
-| 40code | 公开作品数/点赞数/观看数 |
-| ZeroCat | 公开作品数/Stars |
-| 小盒子社区(Sbox) | Likes/Stars/views/pr |
-| 别针社区 | - |
-| ccw.site | - |
+| 社区             | 支持度                   |
+|------------------|--------------------------|
+| 40code           | 公开作品数/点赞数/观看数 |
+| ZeroCat          | 公开作品数/Stars         |
+| 小盒子社区(Sbox) | Likes/Stars/views/pr     |
+| 别针社区         | -                        |
+| ccw.site         | -                        |
 
 欢迎各位前来贡献
 
 ### 默认值
+
 - color: `2f80ed`
 - username: `Developer`
 - theme: `dark`
@@ -45,6 +48,7 @@
 ---
 
 ## TODO
+
 - [x] 添加主题切换
 - [x] 支持小盒子社区
 - [x] 备用线路部署
@@ -52,13 +56,16 @@
 ## 线路
 
 ### ESA边缘函数
-```
+
+```plain
 http://scratch-readme-state.yearnstudio.cn
 ```
 
 ### EdgeOne边缘函数(荐)
+>
 > 支持HTTP/HTTPS
-```
+
+```plain
 https://screadme.yearnstudio.cn/
 ```
 

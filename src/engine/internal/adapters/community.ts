@@ -1,7 +1,7 @@
 import { defineAdapter } from "../../dataHandler";
 
 export const fortyCode = defineAdapter({
-    communityId: "40code",
+    communityName: "40code",
     async getInfo(user) {
         const response = await fetch(`https://api.abc.520gxx.com/work/user?id=${encodeURIComponent(user)}&l=10000&token=`);
         if (!response.ok) {
@@ -26,7 +26,7 @@ export const fortyCode = defineAdapter({
     }
 });
 export const zeroCat = defineAdapter({
-    communityId: "ZeroCat",
+    communityName: "ZeroCat",
     async getInfo(user) {
         const response = await fetch(`https://zerocat-api.houlangs.com/searchapi?search_userid=${encodeURIComponent(user)}&search_orderby=view_up&search_state=public&curr=1&limit=10000`);
         if (!response.ok) {
@@ -43,7 +43,7 @@ export const zeroCat = defineAdapter({
     }
 });
 export const smallBox = defineAdapter({
-    communityId: "小盒子社区",
+    communityName: "小盒子社区",
     async getInfo(user) {
         const cleanName = encodeURIComponent(user.trim());
         const response = await fetch(`https://sbox.yearnstudio.cn/api/user/ue?user=${cleanName}`);
@@ -66,7 +66,7 @@ export const smallBox = defineAdapter({
     }
 });
 export const ccw = defineAdapter({
-    communityId: "共创世界",
+    communityName: "共创世界",
     async getInfo(user) {
         const response = await fetch("https://community-web.ccw.site/creation/page_by_student?page=1&perPage=1000&sortType=DESC", {
             method: "post",

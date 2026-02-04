@@ -23,7 +23,7 @@ export interface UserProfileHandler {
     (user: string): Promise<UserProfile>;
 }
 export interface CommunityAdapter {
-    communityId: string;
+    communityName: string;
     getInfo: UserProfileHandler;
     fields: {
         username: string;
@@ -40,7 +40,7 @@ export function defineAdapter(data: CommunityAdapter) {
 }
 export function registerAdapter(...adapters: CommunityAdapter[]) {
     for (const adapter of adapters) {
-        adapterStore[adapter.communityId] = adapter;
+        adapterStore[adapter.communityName] = adapter;
         if (adapter.fields.rank) {
             rankStore[adapter.fields.rank.system] = adapter.fields.rank.store;
         }

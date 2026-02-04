@@ -60,7 +60,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
                 try {
                     return await adapter.getInfo(result.username);
                 } catch (e) {
-                    throw new Error(`请求${adapter.communityId}时出错：${e}`);
+                    throw new Error(`请求${adapter.communityName}时出错：${e}`);
                 }
             })(result.adapter));
         }

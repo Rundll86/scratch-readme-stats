@@ -9,5 +9,6 @@ export default defineConfig({
     dts: true,
     loader: {
         ".svg": "text"
-    }
+    },
+    format: ["esm"]
 });

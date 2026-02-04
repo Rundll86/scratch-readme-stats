@@ -10,7 +10,7 @@ export const fortyCode: CommunityAdapter = {
         let data = await response.json();
         data = data?.data || [];
         let likes = 0;
-        let works = data.length;
+        const works = data.length;
         let looks = 0;
         if (works === 0) {
             return { works: 0, likes: 0, looks: 0 };

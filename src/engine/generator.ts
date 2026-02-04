@@ -37,7 +37,7 @@ export function reach(request: Request) {
 }
 export function generateRating(profile: UserProfile): RankRating {
     const { works, likes, looks } = profile;
-    let count: number = likes * 1.2 + works * 0.8 + looks * 0.01;
+    const count: number = likes * 1.2 + works * 0.8 + looks * 0.01;
     let level: Ranks = "E";
     if (count >= 10 && count < 20) level = "D";
     else if (count >= 20 && count < 40) level = "C";
@@ -70,9 +70,9 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
                 success: false
             };
         }
-        let { color } = setting;
+        const { color } = setting;
         const { theme } = setting;
-        const promises: Promise<UserProfile>[] = []
+        const promises: Promise<UserProfile>[] = [];
         for (const result of results) {
             promises.push((async (adapter) => {
                 try {
@@ -105,7 +105,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
             themeColor: color
         });
         return { result, success: true };
-    } catch (error) {
-        return { result: "Internal Server Error", success: false }
+    } catch {
+        return { result: "Internal Server Error", success: false };
     }
 }

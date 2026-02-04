@@ -1,160 +1,160 @@
 async function getUserInfo40c(id) {
-  const url = `https://api.abc.520gxx.com/work/user?id=${encodeURIComponent(id)}&l=10000&token=`;
+    const url = `https://api.abc.520gxx.com/work/user?id=${encodeURIComponent(id)}&l=10000&token=`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let data = await response.json();
+        data = data?.data || [];
+        let likes = 0;
+        let works = data.length;
+        let looks = 0;
+        if (works === 0) {
+            return { works: 0, likes: 0, looks: 0 };
+        }
+        for (let i = 0; i < data.length; i++) {
+            likes += data[i].like || 0;
+            looks += (data[i].look || 0) + (data[i].oldlook || 0);
+        }
+        return { works, likes, looks };
+    } catch (error) {
+        console.error("40code 请求失败:", error);
+        return { works: 0, likes: 0, looks: 0 };
     }
-    let data = await response.json();
-    data = data?.data || [];
-    let likes = 0;
-    let works = data.length;
-    let looks = 0;
-    if (works === 0) {
-      return { works: 0, likes: 0, looks: 0 };
-    }
-    for (let i = 0; i < data.length; i++) {
-      likes += data[i].like || 0;
-      looks += (data[i].look || 0) + (data[i].oldlook || 0);
-    }
-    return { works, likes, looks };
-  } catch (error) {
-    console.error("40code 请求失败:", error);
-    return { works: 0, likes: 0, looks: 0 };
-  }
 }
 
 async function getUserInfoZc(id) {
-  const url = `https://zerocat-api.houlangs.com/searchapi?search_userid=${encodeURIComponent(id)}&search_orderby=view_up&search_state=public&curr=1&limit=10000`;
+    const url = `https://zerocat-api.houlangs.com/searchapi?search_userid=${encodeURIComponent(id)}&search_orderby=view_up&search_state=public&curr=1&limit=10000`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const projects = data?.projects || [];
+        const works = projects.length;
+        const likes = projects.reduce((acc, cur) => acc + (cur.star_count || 0), 0);
+        return { works, likes, looks: 0 };
+    } catch (error) {
+        console.error("Zerocat 请求失败:", error);
+        return { works: 0, likes: 0, looks: 0 };
     }
-    const data = await response.json();
-    const projects = data?.projects || [];
-    const works = projects.length;
-    const likes = projects.reduce((acc, cur) => acc + (cur.star_count || 0), 0);
-    return { works, likes, looks: 0 };
-  } catch (error) {
-    console.error("Zerocat 请求失败:", error);
-    return { works: 0, likes: 0, looks: 0 };
-  }
 }
 
 // 新增：小盒子社区（SBox）支持 小狐狸支持
 async function getUserInfoSBox(username) {
-  const cleanName = encodeURIComponent(username.trim());
-  const url = `https://sbox.yearnstudio.cn/api/user/ue?user=${cleanName}`;
+    const cleanName = encodeURIComponent(username.trim());
+    const url = `https://sbox.yearnstudio.cn/api/user/ue?user=${cleanName}`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // 验证返回数据有效性
+        if (!data || typeof data.total_works !== "number") {
+            return { works: 0, likes: 0, looks: 0 };
+        }
+
+        // 合并 likes + stars 作为总“点赞”
+        const totalLikes = (data.likes || 0) + (data.stars || 0);
+        return {
+            works: data.total_works || 0,
+            likes: totalLikes,
+            looks: data.views || 0
+        };
+    } catch (error) {
+        console.error("SBox 请求失败:", error);
+        return { works: 0, likes: 0, looks: 0 };
     }
-    const data = await response.json();
-
-    // 验证返回数据有效性
-    if (!data || typeof data.total_works !== 'number') {
-      return { works: 0, likes: 0, looks: 0 };
-    }
-
-    // 合并 likes + stars 作为总“点赞”
-    const totalLikes = (data.likes || 0) + (data.stars || 0);
-    return {
-      works: data.total_works || 0,
-      likes: totalLikes,
-      looks: data.views || 0
-    };
-  } catch (error) {
-    console.error("SBox 请求失败:", error);
-    return { works: 0, likes: 0, looks: 0 };
-  }
 }
 
 async function handleRequest(request) {
-  try {
-    const url = new URL(request.url);
-    const params = url.searchParams;
+    try {
+        const url = new URL(request.url);
+        const params = url.searchParams;
 
-    const id40code = params.get('code');
-    const zerocatid = params.get('zc');
-    const sboxUser = params.get('sbox');
-    const username = params.get('username') || 'Developer';
-    let themeColor = params.get('color') || '#2f80ed';
-    const theme = params.get('theme') || 'light';
+        const id40code = params.get("code");
+        const zerocatid = params.get("zc");
+        const sboxUser = params.get("sbox");
+        const username = params.get("username") || "Developer";
+        let themeColor = params.get("color") || "#2f80ed";
+        const theme = params.get("theme") || "light";
 
-    // 标准化颜色格式
-    if (!themeColor.startsWith('#')) {
-      themeColor = `#${themeColor}`;
-    }
+        // 标准化颜色格式
+        if (!themeColor.startsWith("#")) {
+            themeColor = `#${themeColor}`;
+        }
 
-    // 至少需要一个有效参数
-    if (!id40code && !zerocatid && !sboxUser) {
-      return new Response("请提供有效的用户ID参数 (code、zc 或 sbox)", {
-        status: 400,
-        headers: { "content-type": "text/plain;charset=UTF-8" },
-      });
-    }
+        // 至少需要一个有效参数
+        if (!id40code && !zerocatid && !sboxUser) {
+            return new Response("请提供有效的用户ID参数 (code、zc 或 sbox)", {
+                status: 400,
+                headers: { "content-type": "text/plain;charset=UTF-8" },
+            });
+        }
 
-    let allWorks = 0;
-    let allLikes = 0;
-    let allLooks = 0;
+        let allWorks = 0;
+        let allLikes = 0;
+        let allLooks = 0;
 
-    const promises = [];
+        const promises = [];
 
-    if (id40code) promises.push(getUserInfo40c(id40code));
-    else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
+        if (id40code) promises.push(getUserInfo40c(id40code));
+        else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
 
-    if (zerocatid) promises.push(getUserInfoZc(zerocatid));
-    else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
+        if (zerocatid) promises.push(getUserInfoZc(zerocatid));
+        else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
 
-    if (sboxUser) promises.push(getUserInfoSBox(sboxUser));
-    else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
+        if (sboxUser) promises.push(getUserInfoSBox(sboxUser));
+        else promises.push(Promise.resolve({ works: 0, likes: 0, looks: 0 }));
 
-    const [info40c, infoZc, infoSBox] = await Promise.all(promises);
+        const [info40c, infoZc, infoSBox] = await Promise.all(promises);
 
-    allWorks += info40c.works + infoZc.works + infoSBox.works;
-    allLikes += info40c.likes + infoZc.likes + infoSBox.likes;
-    allLooks += info40c.looks + infoZc.looks + infoSBox.looks;
+        allWorks += info40c.works + infoZc.works + infoSBox.works;
+        allLikes += info40c.likes + infoZc.likes + infoSBox.likes;
+        allLooks += info40c.looks + infoZc.looks + infoSBox.looks;
 
-    // 计算 Rank
-    let rankNum = allLikes * 1.2 + allWorks * 0.8 + allLooks * 0.01;
-    console.log("RankNum:", rankNum);
+        // 计算 Rank
+        let rankNum = allLikes * 1.2 + allWorks * 0.8 + allLooks * 0.01;
+        console.log("RankNum:", rankNum);
 
-    let rank = 'E';
-    if (rankNum >= 10 && rankNum < 20) rank = 'D';
-    else if (rankNum >= 20 && rankNum < 40) rank = 'C';
-    else if (rankNum >= 40 && rankNum < 70) rank = 'B';
-    else if (rankNum >= 70 && rankNum < 100) rank = 'BPLUS';
-    else if (rankNum >= 100 && rankNum < 150) rank = 'A';
-    else if (rankNum >= 150 && rankNum < 250) rank = 'APLUS';
-    else if (rankNum >= 250 && rankNum < 300) rank = 'APLUSPLUS';
-    else if (rankNum >= 300 && rankNum < 400) rank = 'S';
-    else if (rankNum >= 400) rank = 'SPLUS';
+        let rank = "E";
+        if (rankNum >= 10 && rankNum < 20) rank = "D";
+        else if (rankNum >= 20 && rankNum < 40) rank = "C";
+        else if (rankNum >= 40 && rankNum < 70) rank = "B";
+        else if (rankNum >= 70 && rankNum < 100) rank = "BPLUS";
+        else if (rankNum >= 100 && rankNum < 150) rank = "A";
+        else if (rankNum >= 150 && rankNum < 250) rank = "APLUS";
+        else if (rankNum >= 250 && rankNum < 300) rank = "APLUSPLUS";
+        else if (rankNum >= 300 && rankNum < 400) rank = "S";
+        else if (rankNum >= 400) rank = "SPLUS";
 
-    const totalDash = 251.2;
-    const rankProgress = {
-      'SPLUS': 1.0,
-      'S': 0.9,
-      'APLUSPLUS': 0.85,
-      'APLUS': 0.8,
-      'A': 0.7,
-      'BPLUS': 0.6,
-      'B': 0.5,
-      'C': 0.3,
-      'D': 0.1,
-      'E': 0
-    };
-    const progressPercent = rankProgress[rank] || 0;
-    const targetOffset = totalDash * (1 - progressPercent);
-    const rankResult = rank.replaceAll("PLUS", "+");
+        const totalDash = 251.2;
+        const rankProgress = {
+            "SPLUS": 1.0,
+            "S": 0.9,
+            "APLUSPLUS": 0.85,
+            "APLUS": 0.8,
+            "A": 0.7,
+            "BPLUS": 0.6,
+            "B": 0.5,
+            "C": 0.3,
+            "D": 0.1,
+            "E": 0
+        };
+        const progressPercent = rankProgress[rank] || 0;
+        const targetOffset = totalDash * (1 - progressPercent);
+        const rankResult = rank.replaceAll("PLUS", "+");
 
-    let svg;
-    if (theme === 'dark') {
-      svg = `<svg width="400" height="150" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        let svg;
+        if (theme === "dark") {
+            svg = `<svg width="400" height="150" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
     .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${themeColor}; animation: fadeIn 0.8s ease-in-out forwards; }
     .stat { font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #c9d1d9; opacity: 0; animation: slideIn 0.5s ease-in-out forwards; }
@@ -199,8 +199,8 @@ async function handleRequest(request) {
     <text x="0" y="8" text-anchor="middle" class="rank-text">${rankResult}</text>
   </g>
 </svg>`;
-    } else {
-      svg = `<svg width="400" height="150" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        } else {
+            svg = `<svg width="400" height="150" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
     .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${themeColor}; animation: fadeIn 0.8s ease-in-out forwards; }
     .stat { font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58; opacity: 0; animation: slideIn 0.5s ease-in-out forwards; }
@@ -245,25 +245,25 @@ async function handleRequest(request) {
     <text x="0" y="8" text-anchor="middle" class="rank-text">${rankResult}</text>
   </g>
 </svg>`;
-    }
+        }
 
-    return new Response(svg, {
-      headers: {
-        "content-type": "image/svg+xml;charset=UTF-8",
-        "cache-control": "public, max-age=3600",
-      },
-    });
-  } catch (error) {
-    console.error("handleRequest 错误:", error);
-    return new Response("Internal Server Error", {
-      status: 500,
-      headers: { "content-type": "text/plain;charset=UTF-8" },
-    });
-  }
+        return new Response(svg, {
+            headers: {
+                "content-type": "image/svg+xml;charset=UTF-8",
+                "cache-control": "public, max-age=3600",
+            },
+        });
+    } catch (error) {
+        console.error("handleRequest 错误:", error);
+        return new Response("Internal Server Error", {
+            status: 500,
+            headers: { "content-type": "text/plain;charset=UTF-8" },
+        });
+    }
 }
 
 export default {
-  async fetch(request) {
-    return handleRequest(request);
-  }
+    async fetch(request) {
+        return handleRequest(request);
+    }
 };

@@ -1,4 +1,4 @@
-import { CommunityAdapter } from "../engine/dataHandler";
+import { CommunityAdapter } from "../../dataHandler";
 
 export const fortyCode: CommunityAdapter = {
     communityId: "40code",

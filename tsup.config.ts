@@ -1,7 +1,10 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-    entry: ["src/index.ts"],
+    entry: [
+        "./src/engine/internal/serverless/edgeone.ts",
+        "./src/engine/internal/serverless/esa.ts"
+    ],
     clean: true,
     dts: true,
     loader: {

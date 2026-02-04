@@ -12,8 +12,9 @@ export interface CardStyle {
     targetOffset: number;
     themeColor: string;
 }
+export type Themes = "dark" | "light";
 export interface CardSetting {
-    theme: "dark" | "light";
+    theme: Themes;
     color: string;
 }
 export interface UserProfileHandler {

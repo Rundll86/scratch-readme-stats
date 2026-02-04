@@ -1,5 +1,5 @@
 import { compose, templates } from "./composer";
-import { CardSetting, CommunityAdapter, getUsernames, Ranks, UserProfile } from "./dataHandler";
+import { CardSetting, CommunityAdapter, getUsernames, Ranks, store, Themes, UserProfile } from "./dataHandler";
 
 export interface AdaptiveResult {
     adapter: CommunityAdapter;
@@ -13,6 +13,27 @@ export interface RankRating {
     count: number;
     level: Ranks;
     progress: number;
+}
+export function reach(request: Request) {
+    const url = new URL(request.url);
+    const params = url.searchParams;
+
+    const results: AdaptiveResult[] = [];
+    for (const adapter of Object.values(store)) {
+        const communityUsername = params.get(adapter.fields.username);
+        if (communityUsername) {
+            results.push({
+                adapter,
+                user: communityUsername
+            });
+        }
+    }
+    return {
+        results,
+        username: params.get("username") || "Unnamed Developer",
+        color: params.get("color") || "#2f80ed",
+        theme: (params.get("theme") || "light") as Themes
+    };
 }
 export function generateRating(profile: UserProfile): RankRating {
     const { works, likes, looks } = profile;

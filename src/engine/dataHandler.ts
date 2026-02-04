@@ -1,3 +1,5 @@
+import { RankLevelLabels, RankLevelStore } from "./rankHandler";
+
 export interface UserProfile {
     works: number;
     likes: number;
@@ -5,7 +7,7 @@ export interface UserProfile {
 }
 export interface CardInfo {
     username: string;
-    rankResult: Ranks;
+    rankResult: RankLevelLabels;
 }
 export interface CardStyle {
     totalDash: number;
@@ -23,19 +25,21 @@ export interface UserProfileHandler {
 export interface CommunityAdapter {
     communityId: string;
     getInfo: UserProfileHandler;
-    fields: Record<"username", string>;
+    fields: {
+        username: string;
+        rank?: RankLevelStore;
+    };
 }
-export type Ranks = "S+" | "S" | "A++" | "A+" | "A" | "B+" | "B" | "C" | "D" | "E";
 
-export const store: Record<string, CommunityAdapter> = {};
+export const adapterStore: Record<string, CommunityAdapter> = {};
 export function defineAdapter(data: CommunityAdapter) {
     return data;
 }
 export function registerAdapter(...adapters: CommunityAdapter[]) {
     for (const adapter of adapters) {
-        store[adapter.communityId] = adapter;
+        adapterStore[adapter.communityId] = adapter;
     }
 }
 export function getUsernames() {
-    return Object.values(store).map(adapter => adapter.fields.username);
+    return Object.values(adapterStore).map(adapter => adapter.fields.username);
 }

@@ -1,17 +1,18 @@
 import { compose, templates } from "./composer";
-import { CardSetting, CommunityAdapter, getUsernames, Ranks, store, Themes, UserProfile } from "./dataHandler";
+import { CardSetting, CommunityAdapter, getUsernames, adapterStore, Themes, UserProfile } from "./dataHandler";
+import { calculateProgress, normalize, RankLevelLabels, RankLevelStore, rankStore } from "./rankHandler";
 
 export interface AdaptiveResult {
     adapter: CommunityAdapter;
-    user: string;
+    username: string;
 }
 export interface GenerateStatus {
     result: string;
     success: boolean;
 }
-export interface RankRating {
-    count: number;
-    level: Ranks;
+export interface RankReport {
+    score: number;
+    level: RankLevelLabels;
     progress: number;
 }
 export function reach(request: Request) {
@@ -19,12 +20,12 @@ export function reach(request: Request) {
     const params = url.searchParams;
 
     const results: AdaptiveResult[] = [];
-    for (const adapter of Object.values(store)) {
+    for (const adapter of Object.values(adapterStore)) {
         const communityUsername = params.get(adapter.fields.username);
         if (communityUsername) {
             results.push({
                 adapter,
-                user: communityUsername
+                username: communityUsername
             });
         }
     }
@@ -32,41 +33,22 @@ export function reach(request: Request) {
         results,
         username: params.get("username") || "Unnamed Developer",
         color: params.get("color") || "#2f80ed",
-        theme: (params.get("theme") || "light") as Themes
+        theme: (params.get("theme") || "light") as Themes,
+        store: rankStore[params.get("rankSystem") || "default"]
     };
 }
-export function generateRating(profile: UserProfile): RankRating {
+export function reportRank(profile: UserProfile, store: RankLevelStore): RankReport {
     const { works, likes, looks } = profile;
-    const count: number = likes * 1.2 + works * 0.8 + looks * 0.01;
-    let level: Ranks = "E";
-    if (count >= 10 && count < 20) level = "D";
-    else if (count >= 20 && count < 40) level = "C";
-    else if (count >= 40 && count < 70) level = "B";
-    else if (count >= 70 && count < 100) level = "B+";
-    else if (count >= 100 && count < 150) level = "A";
-    else if (count >= 150 && count < 250) level = "A+";
-    else if (count >= 250 && count < 300) level = "A++";
-    else if (count >= 300 && count < 400) level = "S";
-    else if (count >= 400) level = "S+";
-    const progress: number = {
-        "S+": 1.0,
-        "S": 0.9,
-        "A++": 0.85,
-        "A+": 0.8,
-        "A": 0.7,
-        "B+": 0.6,
-        "B": 0.5,
-        "C": 0.3,
-        "D": 0.1,
-        "E": 0
-    }[level];
-    return { count, level, progress };
+    const score: number = likes * 1.2 + works * 0.8 + looks * 0.01;
+    const level: RankLevelLabels = normalize(store).find(level => level.max >= score)?.label || "E";
+    const progress = calculateProgress(score, store);
+    return { score, level, progress };
 }
-export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting): Promise<GenerateStatus> {
+export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting, store: RankLevelStore): Promise<GenerateStatus> {
     try {
         if (results.length === 0) {
             return {
-                result: `请提供有效的用户ID参数（${getUsernames().join("、")}）`,
+                result: `请提供至少一个社区的用户ID查询（${getUsernames().join("、")}）`,
                 success: false
             };
         }
@@ -76,7 +58,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
         for (const result of results) {
             promises.push((async (adapter) => {
                 try {
-                    return await adapter.getInfo(result.user);
+                    return await adapter.getInfo(result.username);
                 } catch (e) {
                     throw new Error(`请求${adapter.communityId}时出错：${e}`);
                 }
@@ -92,7 +74,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
             likes: 0,
             looks: 0
         } satisfies UserProfile);
-        const { level, progress } = generateRating(totalProfile);
+        const { level, progress } = reportRank(totalProfile, store);
         const progressPercent = progress;
         const totalDash = 251.2;
         const targetOffset = totalDash * (1 - progressPercent);

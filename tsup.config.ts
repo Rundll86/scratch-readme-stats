@@ -4,7 +4,7 @@ export default defineConfig({
     entry: [
         "./src/engine/internal/serverless/edgeone.ts",
         "./src/engine/internal/serverless/esa.ts",
-        "./src/engine/internal/serverless/test.ts"
+        "./src/engine/internal/test.ts"
     ],
     clean: true,
     dts: true,

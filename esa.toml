@@ -1,6 +1,6 @@
 name = "scratch-readme"
 description = "Generate your card for your scratch README"
-entry = "dist/esa.mjs"
+entry = "dist/serverless/esa.mjs"
 codeVersions = [ ]
 
 [dev]

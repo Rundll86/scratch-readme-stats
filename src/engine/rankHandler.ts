@@ -10,7 +10,10 @@ export type RankLevelStore = RankLevelMaxScore | RankLevelRating | RankLevelArra
 export function normalize(store: RankLevelStore): RankLevelArray {
     let result: RankLevelArray = [];
     if (typeof store === "number") {
-        result = rankLevels.map((label, i) => ({ label, max: store / rankLevels.length * (i + 1) }));
+        result = rankLevels.toReversed().map((label, i) => ({
+            label,
+            max: label === rankLevels[0] ? Infinity : store / rankLevels.length * (i + 1)
+        }));
     } else if (Array.isArray(store)) {
         result = [...store].sort((a, b) => a.max - b.max);
     } else {

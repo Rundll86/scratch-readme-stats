@@ -1,4 +1,4 @@
-import { RankLevelLabels, RankLevelStore } from "./rankHandler";
+import { RankLevelLabels, RankLevelStore, rankStore } from "./rankHandler";
 
 export interface UserProfile {
     works: number;
@@ -27,7 +27,10 @@ export interface CommunityAdapter {
     getInfo: UserProfileHandler;
     fields: {
         username: string;
-        rank?: RankLevelStore;
+        rank?: {
+            system: string;
+            store: RankLevelStore;
+        };
     };
 }
 
@@ -38,6 +41,9 @@ export function defineAdapter(data: CommunityAdapter) {
 export function registerAdapter(...adapters: CommunityAdapter[]) {
     for (const adapter of adapters) {
         adapterStore[adapter.communityId] = adapter;
+        if (adapter.fields.rank) {
+            rankStore[adapter.fields.rank.system] = adapter.fields.rank.store;
+        }
     }
 }
 export function getUsernames() {

@@ -96,6 +96,10 @@ export const ccw = defineAdapter({
         }
     },
     fields: {
-        username: "ccw"
+        username: "ccw",
+        rank: {
+            system: "ccw",
+            store: 10000000000
+        }
     }
 });

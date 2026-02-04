@@ -105,7 +105,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
             themeColor: color
         });
         return { result, success: true };
-    } catch {
-        return { result: "Internal Server Error", success: false };
+    } catch (e) {
+        return { result: `Internal Server Error: ${e}`, success: false };
     }
 }

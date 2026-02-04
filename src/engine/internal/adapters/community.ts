@@ -70,7 +70,10 @@ export const ccw = defineAdapter({
     async getInfo(user) {
         const response = await fetch("https://community-web.ccw.site/creation/page_by_student?page=1&perPage=1000&sortType=DESC", {
             method: "post",
-            body: JSON.stringify({ studentOids: [user] })
+            body: JSON.stringify({ studentOids: [user] }),
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
         if (!response.ok) {
             throw new Error(`Status: ${response.status}`);

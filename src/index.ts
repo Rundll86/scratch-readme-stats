@@ -1,8 +1,4 @@
-import { compose, templates } from "./engine/composer";
-import fs from "fs/promises";
+import { registerAdapter } from "./engine/dataHandler";
+import { fortyCode, smallBox, zeroCat } from "./internal/adapters";
 
-fs.writeFile("output.svg", compose(templates.dark, {
-    works: 200,
-    likes: 100,
-    looks: 100,
-}));
+registerAdapter(fortyCode, zeroCat, smallBox);

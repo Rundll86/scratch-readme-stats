@@ -25,15 +25,15 @@
   <g transform="translate(25, 70)">
     <g class="stat delay-1">
       <text x="0" y="0" class="label">点赞/Star:</text>
-      <text x="110" y="0">${allLikes}</text>
+      <text x="110" y="0">${likes}</text>
     </g>
     <g class="stat delay-2">
       <text x="0" y="30" class="label">作品数:</text>
-      <text x="110" y="30">${allWorks}</text>
+      <text x="110" y="30">${works}</text>
     </g>
     <g class="stat delay-2">
       <text x="0" y="60" class="label">查看数:</text>
-      <text x="110" y="60">${allLooks}</text>
+      <text x="110" y="60">${looks}</text>
     </g>
   </g>
   <g transform="translate(310, 80)">

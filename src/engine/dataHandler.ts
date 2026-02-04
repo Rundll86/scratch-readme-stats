@@ -3,13 +3,35 @@ export interface UserProfile {
     likes: number;
     looks: number;
 }
-export interface UserProfileHandler {
-    (user: string): Promise<Partial<UserProfile>>;
+export interface CardInfo {
+    username: string;
+    rankResult: Ranks;
 }
-export interface UserNameHandler {
-    (request: Request): Promise<string> | string;
+export interface CardStyle {
+    totalDash: number;
+    targetOffset: number;
+    themeColor: string;
+}
+export interface CardSetting {
+    theme: "dark" | "light";
+    color: string;
+}
+export interface UserProfileHandler {
+    (user: string): Promise<UserProfile>;
 }
 export interface CommunityAdapter {
+    communityId: string;
     getInfo: UserProfileHandler;
-    getUser: UserNameHandler;
+    fields: Record<"username", string>;
+}
+export type Ranks = "S+" | "S" | "A++" | "A+" | "A" | "B+" | "B" | "C" | "D" | "E";
+
+export const store: Record<string, CommunityAdapter> = {};
+export function registerAdapter(...adapters: CommunityAdapter[]) {
+    for (const adapter of adapters) {
+        store[adapter.communityId] = adapter;
+    }
+}
+export function getUsernames() {
+    return Object.values(store).map(adapter => adapter.fields.username);
 }

@@ -18,31 +18,33 @@
 
 ## 各个参数
 
-| 参数     | 描述                       |
-|----------|----------------------------|
-| code     | 40code账户ID               |
-| zc       | ZeroCat社区账户ID          |
-| sbox     | Sbox社区(小盒子社区)账户ID |
-| username | 显示昵称(可自定义)         |
-| color    | 颜色(诸如`aaaaaa`)         |
-| theme    | 主题(dark/light)           |
+| 参数       | 描述                                |
+|------------|-------------------------------------|
+| code       | 40code账户ID                        |
+| zc         | ZeroCat账户ID                       |
+| sbox       | 小盒子社区账户ID                    |
+| ccw        | 共创世界账户Oid（/student/**XXX**） |
+| username   | 显示昵称(可自定义)                  |
+| color      | 颜色(诸如`red`、`FF0000`)           |
+| theme      | 主题(dark/light)                    |
+| rankSystem | 分级系统ID(default/ccw)             |
 
 ## 社区支持情况
 
-| 社区             | 支持度                   |
-|------------------|--------------------------|
-| 40code           | 公开作品数/点赞数/观看数 |
-| ZeroCat          | 公开作品数/Stars         |
-| 小盒子社区(Sbox) | Likes/Stars/views/pr     |
-| 别针社区         | -                        |
-| ccw.site         | -                        |
+| 社区             | 支持度                          |
+|------------------|---------------------------------|
+| 40code           | 公开作品数/点赞数/观看数        |
+| ZeroCat          | 公开作品数/Stars                |
+| 小盒子社区(Sbox) | Likes/Stars/views/pr            |
+| 共创世界         | 公开作品数/点赞数/收藏数/试玩数 |
+| 别针社区         | -                               |
 
 欢迎各位前来贡献
 
 ### 默认值
 
 - color: `2f80ed`
-- username: `Developer`
+- username: `Unnamed Developer`
 - theme: `dark`
 
 ---

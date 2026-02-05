@@ -2,10 +2,10 @@ import { registerAdapter } from "@engine/dataHandler";
 import { reach, generateCard } from "@engine/generator";
 import { getRankStores } from "@engine/rankHandler";
 import { buildResponse } from "@engine/util";
-import { fortyCode, zeroCat, smallBox, ccw, scratch, kernyr } from "@engine/adapters/community";
+import { communities } from "@engine/adapters";
 
 export function init() {
-    registerAdapter(fortyCode, zeroCat, smallBox, ccw, scratch, kernyr);
+    registerAdapter(...communities);
 }
 export async function run(request: Request) {
     const { results, username, color, theme, store } = reach(request);

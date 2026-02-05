@@ -14,8 +14,8 @@
             "@engine/*": [
                 "src/engine/*"
             ],
-            "@adapter/*": [
-                "src/engine/adapters/*"
+            "@community/*": [
+                "src/engine/adapters/communities/*"
             ],
             "@template/*": [
                 "src/templates/*"

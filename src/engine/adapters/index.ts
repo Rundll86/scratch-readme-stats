@@ -1,0 +1,10 @@
+import { CommunityAdapter } from "@engine/dataHandler";
+import fortyCode from "@community/40code";
+import ccw from "@community/ccw";
+import kernyr from "@community/kernyr";
+import scratch from "@community/scratch";
+import smallBox from "@community/smallBox";
+import zerocat from "@community/zerocat";
+
+
+export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, scratch, smallBox, zerocat];

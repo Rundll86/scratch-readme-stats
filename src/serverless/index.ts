@@ -1,8 +1,8 @@
-import { registerAdapter } from "../../dataHandler";
-import { reach, generateCard } from "../../generator";
-import { getRankStores } from "../../rankHandler";
-import { buildResponse } from "../../util";
-import { fortyCode, zeroCat, smallBox, ccw, scratch, kernyr } from "../adapters/community";
+import { registerAdapter } from "@engine/dataHandler";
+import { reach, generateCard } from "@engine/generator";
+import { getRankStores } from "@engine/rankHandler";
+import { buildResponse } from "@engine/util";
+import { fortyCode, zeroCat, smallBox, ccw, scratch, kernyr } from "@engine/adapters/community";
 
 export function init() {
     registerAdapter(fortyCode, zeroCat, smallBox, ccw, scratch, kernyr);

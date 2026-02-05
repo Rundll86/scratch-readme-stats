@@ -1,5 +1,5 @@
-import darkTemplate from "../templates/dark.svg";
-import lightTemplate from "../templates/light.svg";
+import darkTemplate from "@template/dark.svg";
+import lightTemplate from "@template/light.svg";
 import { CardInfo, CardStyle, UserProfile } from "./dataHandler";
 
 export function compose(template: string, data: UserProfile & CardInfo & CardStyle) {

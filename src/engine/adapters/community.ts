@@ -1,4 +1,4 @@
-import { defineAdapter } from "../../dataHandler";
+import { defineAdapter } from "@engine/dataHandler";
 
 export const fortyCode = defineAdapter({
     communityName: "40code",

@@ -26,7 +26,7 @@ export default defineAdapter({
             works: response.pager.quantity,
             looks,
             likes
-        }
+        };
     },
     fields: {
         username: "clipcc"

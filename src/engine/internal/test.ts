@@ -6,7 +6,7 @@ async function main() {
         "output.svg",
         await (
             await esa.fetch(
-                new Request("https://baidu.com/?scratch=griffpatch&username=griffpatch&rankSystem=scratch")
+                new Request("https://baidu.com/?kernyr=wuyuan&username=孙悟元&rankSystem=kernyr")
             )
         ).text()
     );

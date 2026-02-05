@@ -25,6 +25,7 @@
 | sbox       | 小盒子社区账户ID                    |
 | ccw        | 共创世界账户Oid（/student/**XXX**） |
 | scratch    | Scratch官方社区 用户名              |
+| kernyr     | 主核社区 用户名                     |
 | username   | 显示昵称(可自定义)                  |
 | color      | 颜色(诸如`red`、`FF0000`)           |
 | theme      | 主题(dark/light)                    |
@@ -40,6 +41,7 @@
 | Scratch          | 公开作品数/Loves/Favourites/Views |
 | ZeroCat          | 公开作品数/Stars                  |
 | 小盒子社区(Sbox) | Likes/Stars/views/pr              |
+| 主核社区         | 话题数/点赞数/转发数              |
 
 欢迎各位前来贡献
 

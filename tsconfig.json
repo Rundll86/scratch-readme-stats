@@ -9,7 +9,19 @@
         "forceConsistentCasingInFileNames": true,
         "types": [
             "node"
-        ]
+        ],
+        "paths": {
+            "@engine/*": [
+                "src/engine/*"
+            ],
+            "@community/*": [
+                "src/engine/adapters/communities/*"
+            ],
+            "@template/*": [
+                "src/templates/*"
+            ]
+        },
+        "baseUrl": "."
     },
     "include": [
         "src/**/*.ts"

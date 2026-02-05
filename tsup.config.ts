@@ -2,9 +2,9 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
     entry: [
-        "./src/engine/internal/serverless/edgeone.ts",
-        "./src/engine/internal/serverless/esa.ts",
-        "./src/engine/internal/test.ts"
+        "./src/serverless/edgeone.ts",
+        "./src/serverless/esa.ts",
+        "./src/test.ts"
     ],
     clean: true,
     dts: true,

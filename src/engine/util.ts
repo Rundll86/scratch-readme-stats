@@ -16,6 +16,23 @@ export function buildResponse(status: GenerateStatus) {
         });
     }
 }
+export async function parseResponse<T>(response: Promise<Response>, checkStatus?: string): Promise<T> {
+    const responsed = await response;
+    if (!responsed.ok) {
+        throw new Error(`Status: ${responsed.status}`);
+    }
+    try {
+        const data = await responsed.json();
+        if (checkStatus) {
+            if (data[checkStatus] !== 200) {
+                throw new Error(`API Responsed status: ${data[checkStatus]}`);
+            }
+        }
+        return data;
+    } catch (e) {
+        throw new Error(`Error parsing json: ${e}`);
+    }
+}
 export function clamp(value: number, min: number, max: number) {
     return Math.min(Math.max(value, min), max);
 }

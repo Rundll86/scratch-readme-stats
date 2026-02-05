@@ -5,6 +5,7 @@ import kernyr from "@community/kernyr";
 import scratch from "@community/scratch";
 import smallBox from "@community/smallBox";
 import zerocat from "@community/zerocat";
+import clipcc from "@community/clipcc";
 
 
-export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, scratch, smallBox, zerocat];
+export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, scratch, smallBox, zerocat, clipcc];

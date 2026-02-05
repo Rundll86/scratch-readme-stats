@@ -93,7 +93,7 @@ export const ccw = defineAdapter({
             works: workCount,
             likes: likeCount,
             looks: lookCount
-        }
+        };
     },
     fields: {
         username: "ccw",
@@ -109,8 +109,8 @@ export const scratch = defineAdapter({
         const apiUrl = `https://api.scratch.mit.edu/users/${encodeURIComponent(username)}`;
         const response = await fetch(apiUrl, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'application/json',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                "Accept": "application/json",
             },
         });
         if (!response.ok) {
@@ -122,8 +122,8 @@ export const scratch = defineAdapter({
         const projectsUrl = `https://api.scratch.mit.edu/users/${encodeURIComponent(username)}/projects`;
         const projectsResponse = await fetch(projectsUrl, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'application/json',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                "Accept": "application/json",
             },
         });
         if (!projectsResponse.ok) {
@@ -171,7 +171,7 @@ export const kernyr = defineAdapter({
             works: workCount,
             likes: likeCount,
             looks: lookCount
-        }
+        };
     },
     fields: {
         username: "kernyr",

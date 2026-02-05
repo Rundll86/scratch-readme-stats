@@ -26,7 +26,7 @@ async function getUserInfo40c(id) {
 }
 
 async function getUserInfoZc(id) {
-    const url = `https://zerocat-api.houlangs.com/searchapi?search_userid=${encodeURIComponent(id)}&search_orderby=view_up&search_state=public&curr=1&limit=10000`;
+    const url = `https://api.zcservice.houlang.cloud/searchapi?search_userid=${encodeURIComponent(id)}&search_orderby=view_up&search_state=public&curr=1&limit=10000`;
 
     try {
         const response = await fetch(url);

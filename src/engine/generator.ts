@@ -18,7 +18,6 @@ export interface RankReport {
 export function reach(request: Request) {
     const url = new URL(request.url);
     const params = url.searchParams;
-
     const results: AdaptiveResult[] = [];
     for (const adapter of Object.values(adapterStore)) {
         const communityUsername = params.get(adapter.fields.username);
@@ -29,12 +28,14 @@ export function reach(request: Request) {
             });
         }
     }
+    const rankSystem = params.get("rankSystem") || "default";
     return {
         results,
         username: params.get("username") || "Unnamed Developer",
         color: params.get("color") || "#2f80ed",
         theme: (params.get("theme") || "light") as Themes,
-        store: rankStore[params.get("rankSystem") || "default"]
+        store: rankStore[rankSystem],
+        rankSystem
     };
 }
 export function reportRank(profile: UserProfile, store: RankLevelStore): RankReport {
@@ -44,7 +45,7 @@ export function reportRank(profile: UserProfile, store: RankLevelStore): RankRep
     const progress = calculateProgress(score, store);
     return { score, level, progress };
 }
-export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting, store: RankLevelStore): Promise<GenerateStatus> {
+export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting, store: RankLevelStore, rankSystem: string): Promise<GenerateStatus> {
     try {
         if (results.length === 0) {
             return {
@@ -84,7 +85,8 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
             rankResult: level,
             totalDash,
             targetOffset,
-            themeColor: color
+            themeColor: color,
+            rankSystem
         });
         return { result, success: true };
     } catch (e) {

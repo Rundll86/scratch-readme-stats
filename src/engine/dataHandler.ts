@@ -8,6 +8,7 @@ export interface UserProfile {
 export interface CardInfo {
     username: string;
     rankResult: RankLevelLabels;
+    rankSystem: string;
 }
 export interface CardStyle {
     totalDash: number;

@@ -18,17 +18,18 @@
 
 ## 各个参数
 
-| 参数       | 描述                                |
-|------------|-------------------------------------|
-| code       | 40code账户ID                        |
-| zc         | ZeroCat账户ID                       |
-| sbox       | 小盒子社区账户ID                    |
-| ccw        | 共创世界账户Oid（/student/**XXX**） |
-| scratch    | Scratch官方社区 用户名              |
-| username   | 显示昵称(可自定义)                  |
-| color      | 颜色(诸如`red`、`FF0000`)           |
-| theme      | 主题(dark/light)                    |
-| rankSystem | 分级系统ID(default/ccw)             |
+| 参数       | 描述                                   |
+|------------|----------------------------------------|
+| code       | 40code账户ID                           |
+| zc         | ZeroCat账户ID                          |
+| sbox       | 小盒子社区账户ID                       |
+| ccw        | 共创世界账户Oid（/student/**XXX**）    |
+| scratch    | Scratch官方社区 用户名                 |
+| kernyr     | 主核社区 用户名                        |
+| username   | 显示昵称(可自定义)                     |
+| color      | 颜色(诸如`red`、`FF0000`)              |
+| theme      | 主题(dark/light)                       |
+| rankSystem | 分级系统ID(default/ccw/scratch/kernyr) |
 
 ## 社区支持情况
 
@@ -40,6 +41,7 @@
 | Scratch          | 公开作品数/Loves/Favourites/Views |
 | ZeroCat          | 公开作品数/Stars                  |
 | 小盒子社区(Sbox) | Likes/Stars/views/pr              |
+| 主核社区         | 话题数/点赞数/转发数              |
 
 欢迎各位前来贡献
 

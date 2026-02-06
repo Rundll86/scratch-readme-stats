@@ -20,15 +20,19 @@
 
 社区账户填写：
 
-| 参数       | 描述                                   |
-|------------|----------------------------------------|
-| code       | 40code账户ID                           |
-| zc         | ZeroCat账户ID                          |
-| sbox       | 小盒子社区账户ID                       |
-| ccw        | 共创世界账户Oid（/student/**XXX**）    |
-| scratch    | Scratch官方社区 用户名                 |
-| kernyr     | 主核社区 用户名                        |
-| clipcc     | 别针社区账户ID                         |
+| 参数     | 描述                                |
+|----------|-------------------------------------|
+| code     | 40code账户ID                        |
+| zc       | ZeroCat账户ID                       |
+| sbox     | 小盒子社区账户ID                    |
+| ccw      | 共创世界账户Oid（/student/**XXX**） |
+| scratch  | Scratch官方社区 用户名              |
+| kernyr   | 主核社区 用户名                     |
+| clipcc   | 别针社区账户ID                      |
+| sccn     | Scratch中社 邮箱地址                |
+| momQ     | 希妈阿Q 用户名                      |
+| hou      | 编程候老师账户ID                    |
+| gitblock | 稽木世界账户ID                      |
 
 其他信息填写：
 
@@ -50,6 +54,10 @@
 | ZeroCat          | 公开作品数/Stars                  |
 | 主核社区         | 话题数/点赞数/转发数              |
 | 小盒子社区(Sbox) | Likes/Stars/views/pr              |
+| Scratch中社      | Scratch中社 邮箱地址              |
+| 希妈阿Q          | 希妈阿Q 用户名                    |
+| 编程侯老师       | 编程候老师账户ID                  |
+| 稽木世界         | 稽木世界账户ID                    |
 
 欢迎各位前来贡献
 
@@ -61,12 +69,6 @@
 - rankSystem: `default`
 
 ---
-
-## TODO
-
-- [x] 添加主题切换
-- [x] 支持小盒子社区
-- [x] 备用线路部署
 
 ## 线路
 

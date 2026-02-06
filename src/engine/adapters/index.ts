@@ -12,6 +12,7 @@ import hou from "@community/hou";
 import gitblock from "@community/gitblock";
 import github from "@community/github";
 import kidscode from "@community/kidscode";
+import xmw from "@community/xmw";
 
 export const communities: CommunityAdapter[] = [
     fortyCode,
@@ -26,5 +27,6 @@ export const communities: CommunityAdapter[] = [
     hou,
     gitblock,
     github,
-    kidscode
+    kidscode,
+    xmw
 ];

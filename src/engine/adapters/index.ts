@@ -10,5 +10,6 @@ import zerocat from "@community/zerocat";
 import clipcc from "@community/clipcc";
 import hou from "@community/hou";
 import gitblock from "@community/gitblock";
+import github from "@community/github";
 
-export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, momQ, sccn, scratch, smallBox, zerocat, clipcc, hou, gitblock];
+export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, momQ, sccn, scratch, smallBox, zerocat, clipcc, hou, gitblock, github];

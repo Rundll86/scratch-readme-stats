@@ -20,20 +20,21 @@
 
 社区账户填写：
 
-| 参数     | 描述                                |
-|----------|-------------------------------------|
-| code     | 40code账户ID                        |
-| hou      | 编程候老师账户ID                    |
-| clipcc   | 别针社区账户ID                      |
-| ccw      | 共创世界账户Oid（/student/**XXX**） |
-| gitblock | 稽木世界账户ID                      |
-| momQ     | 希妈阿Q 用户名                      |
-| sbox     | 小盒子社区账户ID                    |
-| kernyr   | 主核社区 用户名                     |
-| github   | Github 用户名                       |
-| scratch  | Scratch官方社区 用户名              |
-| sccn     | Scratch中社 邮箱地址                |
-| zc       | ZeroCat账户ID                       |
+| 参数     | 描述                                   |
+|----------|----------------------------------------|
+| code     | 40code账户ID                           |
+| hou      | 编程候老师账户ID                       |
+| clipcc   | 别针社区账户ID                         |
+| ccw      | 共创世界账户Oid（/student/**XXX**）    |
+| gitblock | 稽木世界账户ID                         |
+| momQ     | 希妈阿Q 用户名                         |
+| sbox     | 小盒子社区账户ID                       |
+| kiscode  | 中国少儿编程网账户ID（/coder/**XXX**） |
+| kernyr   | 主核社区 用户名                        |
+| github   | Github 用户名                          |
+| scratch  | Scratch官方社区 用户名                 |
+| sccn     | Scratch中社 邮箱地址                   |
+| zc       | ZeroCat账户ID                          |
 
 其他信息填写：
 
@@ -58,6 +59,7 @@
 | ZeroCat          | 公开作品数/Stars                  |
 | 希妈阿Q          | 棍母                              |
 | 主核社区         | 话题数/点赞数/转发数              |
+| 中国少儿编程网   | 作品数/点赞数/观看数              |
 | 小盒子社区(Sbox) | Likes/Stars/Views/PullRequests    |
 | Github           | Watchers/Stars/Forks              |
 

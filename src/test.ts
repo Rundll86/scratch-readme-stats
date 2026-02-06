@@ -1,4 +1,3 @@
-import process from "process";
 import esa from "./serverless/esa";
 import fs from "fs/promises";
 

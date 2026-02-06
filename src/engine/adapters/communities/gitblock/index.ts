@@ -9,7 +9,7 @@ export default defineAdapter({
             throw new Error("需要鉴权，请携带稽木世界鉴权cookie再请求。");
         }
         const response = await fetchData(user, cookie, 1);
-        let works = response.pagedProjects.totalItemCount;
+        const works = response.pagedProjects.totalItemCount;
         const promises = [];
         for (let i = 0; i < response.pagedProjects.totalPageCount; i++) {
             promises.push((async () => {

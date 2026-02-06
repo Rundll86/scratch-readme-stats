@@ -18,7 +18,7 @@ export default defineAdapter({
             works: works.length,
             likes,
             looks
-        }
+        };
     },
     fields: {
         username: "hou"

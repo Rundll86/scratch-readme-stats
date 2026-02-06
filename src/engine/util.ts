@@ -36,10 +36,10 @@ export async function parseResponse<T>(response: Promise<Response> | Response, t
 export function clamp(value: number, min: number, max: number) {
     return Math.min(Math.max(value, min), max);
 }
-export function buildForm(data: Record<string, any>) {
+export function buildForm(data: Record<string, string | number | boolean>) {
     const result = new FormData();
     for (const [key, value] of Object.entries(data)) {
-        result.append(key, value);
+        result.append(key, String(value));
     }
     return result;
 }

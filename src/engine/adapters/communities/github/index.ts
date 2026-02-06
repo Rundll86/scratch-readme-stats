@@ -9,10 +9,11 @@ export default defineAdapter({
             throw new Error("需要鉴权，请携带Github Personal Access Token再请求。");
         }
         const response = await fetchData(user, 1, pat);
-        const repos = [];
+        const promises = [];
         for (let i = 0; i < response.maxPage; i++) {
-            repos.push(...(await fetchData(user, i + 1, pat)).repos);
+            promises.push((async () => (await fetchData(user, i + 1, pat)).repos)());
         }
+        const repos = (await Promise.all(promises)).flat();
         let works = 0;
         let likes = 0;
         let looks = 0;

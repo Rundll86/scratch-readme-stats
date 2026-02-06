@@ -1,6 +1,6 @@
 import { buildForm, parseResponse } from "@engine/util";
 
-export async function fetchData(user: string, cookie: string) {
+export async function fetchData(user: string, cookie: string, page: number) {
     return await parseResponse<{
         pagedProjects: {
             items: {
@@ -13,7 +13,10 @@ export async function fetchData(user: string, cookie: string) {
         };
     }>(fetch(`http://gitblock.cn/WebApi/Users/${user}/GetPagedPublishedProjects`, {
         method: "post",
-        body: buildForm({}),
+        body: buildForm({
+            pageSize: 114514,
+            pageIndex: page
+        }),
         headers: { cookie }
     }));
 }

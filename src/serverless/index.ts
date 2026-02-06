@@ -15,6 +15,6 @@ export async function run(request: Request) {
             success: false
         });
     }
-    const status = await generateCard(results, username, { color, theme }, store, rankSystem);
+    const status = await generateCard(results, username, { color, theme }, store, rankSystem, request);
     return buildResponse(status);
 }

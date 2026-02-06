@@ -36,3 +36,10 @@ export async function parseResponse<T>(response: Promise<Response>, type: "json"
 export function clamp(value: number, min: number, max: number) {
     return Math.min(Math.max(value, min), max);
 }
+export function buildForm(data: Record<string, any>) {
+    const result = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+        result.append(key, value);
+    }
+    return result;
+}

@@ -21,7 +21,7 @@ export interface CardSetting {
     color: string;
 }
 export interface UserProfileHandler {
-    (user: string): Promise<UserProfile>;
+    (user: string, request: Request): Promise<UserProfile>;
 }
 export interface CommunityAdapter {
     communityName: string;

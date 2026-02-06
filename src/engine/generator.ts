@@ -45,7 +45,7 @@ export function reportRank(profile: UserProfile, store: RankLevelStore): RankRep
     const progress = calculateProgress(score, store);
     return { score, level, progress };
 }
-export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting, store: RankLevelStore, rankSystem: string): Promise<GenerateStatus> {
+export async function generateCard(results: AdaptiveResult[], username: string, setting: CardSetting, store: RankLevelStore, rankSystem: string, request: Request): Promise<GenerateStatus> {
     try {
         if (results.length === 0) {
             return {
@@ -59,7 +59,7 @@ export async function generateCard(results: AdaptiveResult[], username: string, 
         for (const result of results) {
             promises.push((async (adapter) => {
                 try {
-                    return await adapter.getInfo(result.username);
+                    return await adapter.getInfo(result.username, request);
                 } catch (e) {
                     throw new Error(`请求${adapter.communityName}时出错：${e}`);
                 }

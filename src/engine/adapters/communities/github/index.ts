@@ -3,11 +3,15 @@ import { fetchData } from "./data";
 
 export default defineAdapter({
     communityName: "Github",
-    async getInfo(user) {
-        const response = await fetchData(user, 1);
+    async getInfo(user, request) {
+        const pat = request.headers.get("Authorization");
+        if (!pat) {
+            throw new Error("需要鉴权，请携带Github Personal Access Token再请求。");
+        }
+        const response = await fetchData(user, 1, pat);
         const repos = [];
         for (let i = 0; i < response.maxPage; i++) {
-            repos.push(...(await fetchData(user, i + 1)).repos);
+            repos.push(...(await fetchData(user, i + 1, pat)).repos);
         }
         let works = 0;
         let likes = 0;

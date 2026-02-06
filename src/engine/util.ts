@@ -16,7 +16,7 @@ export function buildResponse(status: GenerateStatus) {
         });
     }
 }
-export async function parseResponse<T>(response: Promise<Response>, type: "json" | "text" = "json", checkStatus?: string): Promise<T> {
+export async function parseResponse<T>(response: Promise<Response> | Response, type: "json" | "text" = "json", checkStatus?: string): Promise<T> {
     const responsed = await response;
     if (!responsed.ok) {
         throw new Error(`Status: ${responsed.status}`);

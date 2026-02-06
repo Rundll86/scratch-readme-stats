@@ -8,6 +8,7 @@ import scratch from "@community/scratch";
 import smallBox from "@community/smallBox";
 import zerocat from "@community/zerocat";
 import clipcc from "@community/clipcc";
+import hou from "@community/hou";
 
 
-export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, momQ, sccn, scratch, smallBox, zerocat, clipcc];
+export const communities: CommunityAdapter[] = [fortyCode, ccw, kernyr, momQ, sccn, scratch, smallBox, zerocat, clipcc, hou];

@@ -16,13 +16,13 @@ export function buildResponse(status: GenerateStatus) {
         });
     }
 }
-export async function parseResponse<T>(response: Promise<Response>, checkStatus?: string): Promise<T> {
+export async function parseResponse<T>(response: Promise<Response>, type: "json" | "text" = "json", checkStatus?: string): Promise<T> {
     const responsed = await response;
     if (!responsed.ok) {
         throw new Error(`Status: ${responsed.status}`);
     }
     try {
-        const data = await responsed.json();
+        const data = await responsed[type]();
         if (checkStatus) {
             if (data[checkStatus] !== 200) {
                 throw new Error(`API Responsed status: ${data[checkStatus]}`);
@@ -30,7 +30,7 @@ export async function parseResponse<T>(response: Promise<Response>, checkStatus?
         }
         return data;
     } catch (e) {
-        throw new Error(`Error parsing json: ${e}`);
+        throw new Error(`Error parsing ${type}: ${e}`);
     }
 }
 export function clamp(value: number, min: number, max: number) {
